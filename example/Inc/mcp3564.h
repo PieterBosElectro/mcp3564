@@ -50,6 +50,10 @@
 #define _MCP3561_COMMAND_ADDR_POS    (2)
 
 // USEFUL MASKS FOR ADC COMMUNICATION
+#define readConversionData		0b01000011; // Device address 1, incremental read starting at register address 0 (ADC Data register) 0x43
+#define fullResetFastCmd		0b01111000; // Fast command to reset device 0x78
+#define startConversionFastCmd  0b01101000; // Fast command to start a conversion 0x68
+  
 #define MCP3561_DATA_READY_SMASK   (0x04) // 0b00000100 // Tells us whether data is ready from an SPI transaction
 #define MCP3561_ADDRESS_MASK       (0x38) // 0b00111000
 #define MCP3561_WRITE_COMMAND_MASK (0x02) // 0b00000010
