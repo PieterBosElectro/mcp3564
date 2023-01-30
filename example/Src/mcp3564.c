@@ -153,8 +153,8 @@ void MCP3561_Init_One_Shot(SPI_HandleTypeDef *hspi){
 	_MCP3561_write(hspi, cmd, 2);
 
 	cmd[0]  = MCP3561_CONFIG3_WRITE;
-	cmd[1]  = MCP3561_CONFIG3_CONV_MODE_ONE_SHOT_STANDBY; // conversion mode
-	//cmd[1]  = MCP3561_CONFIG3_CONV_MODE_CONTINUOUS; // conversion mode
+	cmd[1]  = MCP3561_CONFIG3_CONV_MODE_ONE_SHOT_STANDBY; // conversion mode one shot
+
 	cmd[1] |= MCP3561_CONFIG3_DATA_FORMAT_32BIT_CHID_SGN;    // SPI output data format, (32 and 24 bit available)
 	cmd[1] |= MCP3561_CONFIG3_CRCCOM_OFF;           // CRC
 	cmd[1] |= MCP3561_CONFIG3_GAINCAL_OFF;          // gain calibration
@@ -170,22 +170,12 @@ void MCP3561_Init_One_Shot(SPI_HandleTypeDef *hspi){
 
 	cmd[0]  = MCP3561_MUX_WRITE;
 	cmd[1]  = (MCP3561_MUX_CH_AGND << 4) | MCP3561_MUX_CH0;
-	//cmd[1]  = (MCP3561_MUX_CH_AGND << 4) | MCP3561_MUX_CH0;         //Deze werkt
-	//cmd[1]  = (MCP3561_MUX_CH1 << 4) | MCP3561_MUX_CH_IntTemp_P;   // [7..4] VIN+ / [3..0] VIN- ;
 	_MCP3561_write(hspi, cmd, 2);
 
 
 	// configure SCAN mode to automatically cycle through channels
 	// only available for MCP3562 and MCP356^4, and only for certain input combinations
 	// @see Datasheet Table 5-14 on p. 54
-
-/*
-	cmd[0] = MCP3561_SCAN_WRITE;
-	cmd[1] = MCP3561_SCAN_DLY_NONE;
-	cmd[2] = 0b00011000;  // enable channel 1
-	cmd[3] = 0;
-	_MCP3561_write(hspi, cmd, 4);
-*/
 }
 
 /**
