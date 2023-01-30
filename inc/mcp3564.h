@@ -59,6 +59,10 @@
 #define MCP3561_IREAD_COMMAND      (MCP3561_IREAD_COMMAND_MASK | MCP3561_DEVICE_ADDRESS_MASK)
 #define MCP3561_SREAD_COMMAND_MASK (0x01) // 0b1 // Static read command
 #define MCP3561_SREAD_DATA_COMMAND (MCP3561_SREAD_COMMAND_MASK | MCP3561_DEVICE_ADDRESS_MASK)
+  
+#define readConversionData		0b01000011; // Device address 1, incremental read starting at register address 0 (ADC Data register) 0x43
+#define fullResetFastCmd		0b01111000; // Fast command to reset device 0x78
+#define startConversionFastCmd  0b01101000; // Fast command to start a conversion 0x68
 
 #define MCP3561_CONFIG0_ADDR             (0x01)
 #define MCP3561_CONFIG0_WRITE            (MCP3561_CONFIG0_ADDR << _MCP3561_COMMAND_ADDR_POS) | MCP3561_WRITE_COMMAND
